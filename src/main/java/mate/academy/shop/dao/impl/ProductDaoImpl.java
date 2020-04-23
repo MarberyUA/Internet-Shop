@@ -1,18 +1,22 @@
 package mate.academy.shop.dao.impl;
 
 import mate.academy.shop.dao.ProductDao;
-import mate.academy.shop.dao.Storage;
+import mate.academy.shop.db.Storage;
 import mate.academy.shop.lib.Dao;
+import mate.academy.shop.lib.Inject;
 import mate.academy.shop.model.Product;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.IntStream;
 
 @Dao
 public class ProductDaoImpl implements ProductDao {
+
     @Override
     public Product create(Product product) {
-        return null;
+        Storage.addProduct(product);
+        return product;
     }
 
     @Override
@@ -25,16 +29,22 @@ public class ProductDaoImpl implements ProductDao {
 
     @Override
     public List<Product> getAll() {
-        return null;
+        return Storage.products;
     }
 
     @Override
     public Product update(Product product) {
-        return null;
+        IntStream.range(0, Storage.products.size())
+                .filter(p -> Storage.products.get(p).getId().equals(product.getId()))
+                .forEach(i -> Storage.products.set(i, product));
+        return product;
     }
 
     @Override
     public boolean delete(Long id) {
-        return false;
+        IntStream.range(0, Storage.products.size())
+                .filter(x -> Storage.products.get(x).getId().equals(id))
+                .forEach(Storage.products::remove);
+        return true;
     }
 }
