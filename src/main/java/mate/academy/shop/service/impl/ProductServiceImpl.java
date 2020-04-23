@@ -1,7 +1,6 @@
 package mate.academy.shop.service.impl;
 
 import mate.academy.shop.dao.ProductDao;
-import mate.academy.shop.lib.Dao;
 import mate.academy.shop.model.Product;
 import mate.academy.shop.lib.Inject;
 import mate.academy.shop.lib.Service;

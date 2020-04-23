@@ -3,7 +3,6 @@ package mate.academy.shop.dao.impl;
 import mate.academy.shop.dao.ProductDao;
 import mate.academy.shop.db.Storage;
 import mate.academy.shop.lib.Dao;
-import mate.academy.shop.lib.Inject;
 import mate.academy.shop.model.Product;
 
 import java.util.List;
