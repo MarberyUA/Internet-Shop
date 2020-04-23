@@ -16,13 +16,12 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Product create(Product product) {
-        productDao.create(product);
-        return product;
+        return productDao.create(product);
     }
 
     @Override
     public Product get(Long id) {
-        return productDao.get(id).orElseThrow(NoSuchElementException::new);
+        return productDao.get(id).get();
     }
 
     @Override
