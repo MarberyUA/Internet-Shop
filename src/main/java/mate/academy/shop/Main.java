@@ -62,5 +62,6 @@ public class Main {
         shoppingCardService.addProduct(shoppingCard, iPhonePro);
 
         Order newOrder = orderService.completeOrder(shoppingCard.getProductsInShopping(), registeredUser);
+        System.out.println(orderService.getUserOrders(registeredUser));
     }
 }

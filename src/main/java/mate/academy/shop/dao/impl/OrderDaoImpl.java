@@ -7,23 +7,23 @@ import mate.academy.shop.db.Storage;
 import mate.academy.shop.model.User;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.IntStream;
 
 @Dao
 public class OrderDaoImpl implements OrderDao {
     @Override
-    public Order create(Order order, User user) {
-        Storage.addOrder(order, user);
+    public Order create(Order order) {
+        Storage.addOrder(order);
         return order;
     }
 
     @Override
-    public Order get(Long id) {
+    public Optional<Order> get(Long id) {
         return Storage.orders
                 .stream()
                 .filter(order -> order.getUser().getId().equals(id))
-                .findFirst()
-                .get();
+                .findFirst();
     }
 
     @Override

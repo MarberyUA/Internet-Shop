@@ -9,6 +9,7 @@ import mate.academy.shop.model.User;
 import mate.academy.shop.service.OrderService;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -20,7 +21,8 @@ public class OrderServiceImpl implements OrderService {
     public Order completeOrder(List<Product> products, User user) {
         Order order = new Order();
         order.setProductsInOrder(products);
-        orderDao.create(order, user);
+        order.setUser(user);
+        orderDao.create(order);
         return order;
     }
 
@@ -34,7 +36,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public Order get(Long id) {
-        return orderDao.get(id);
+        return orderDao.get(id).get();
     }
 
     @Override

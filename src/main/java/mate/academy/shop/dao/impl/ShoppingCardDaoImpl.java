@@ -30,18 +30,6 @@ public class ShoppingCardDaoImpl implements ShoppingCardDao {
     }
 
     @Override
-    public ShoppingCard addProductToCard(ShoppingCard shoppingCard, Product product) {
-        get(shoppingCard.getId()).addProductToCard(product);
-        return shoppingCard;
-    }
-
-    @Override
-    public boolean deleteProduct(ShoppingCard shoppingCart, Product product) {
-        return get(shoppingCart.getId()).getProductsInShopping()
-                .removeIf(pr -> pr.getId().equals(product.getId()));
-    }
-
-    @Override
     public List<ShoppingCard> getAll() {
         return Storage.shoppingCards;
     }

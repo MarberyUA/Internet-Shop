@@ -6,6 +6,7 @@ import mate.academy.shop.model.User;
 import mate.academy.shop.db.Storage;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.IntStream;
 
 @Dao
@@ -18,12 +19,11 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public User get(Long id) {
+    public Optional<User> get(Long id) {
         return Storage.users
                 .stream()
                 .filter(u -> u.getId().equals(id))
-                .findFirst()
-                .get();
+                .findFirst();
     }
 
     @Override

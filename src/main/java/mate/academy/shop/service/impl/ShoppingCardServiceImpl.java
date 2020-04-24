@@ -22,12 +22,14 @@ public class ShoppingCardServiceImpl implements ShoppingCardService {
 
     @Override
     public ShoppingCard addProduct(ShoppingCard shoppingCart, Product product) {
-        return shoppingCardDao.addProductToCard(shoppingCart, product);
+        shoppingCardDao.get(shoppingCart.getId()).addProductToCard(product);
+        return shoppingCart;
     }
 
     @Override
     public boolean deleteProduct(ShoppingCard shoppingCart, Product product) {
-        return shoppingCardDao.deleteProduct(shoppingCart, product);
+        return shoppingCardDao.get(shoppingCart.getId()).getProductsInShopping()
+                .removeIf(pr -> pr.getId().equals(product.getId()));
     }
 
     @Override

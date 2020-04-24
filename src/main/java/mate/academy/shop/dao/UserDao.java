@@ -3,11 +3,12 @@ package mate.academy.shop.dao;
 import mate.academy.shop.model.User;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface UserDao {
     User create(User user);
 
-    User get(Long id);
+    Optional<User> get(Long id);
 
     List<User> getAll();
 
