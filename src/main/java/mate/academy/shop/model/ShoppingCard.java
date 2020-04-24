@@ -1,11 +1,12 @@
 package mate.academy.shop.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ShoppingCard {
     private User user;
     private Long id;
-    private List<Product> productsInShopping;
+    private List<Product> productsInShopping = new ArrayList<>();
 
     public User getUser() {
         return user;
@@ -27,7 +28,12 @@ public class ShoppingCard {
         return productsInShopping;
     }
 
-    public void setProductsInShopping(List<Product> productsInShopping) {
-        this.productsInShopping = productsInShopping;
+    public void addProductToCard(Product product) {
+        productsInShopping.add(product);
+    }
+
+    @Override
+    public String toString() {
+        return productsInShopping.toString();
     }
 }
