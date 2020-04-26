@@ -1,32 +1,27 @@
 package mate.academy.shop.dao.impl;
 
-import mate.academy.shop.dao.ShoppingCardDao;
-import mate.academy.shop.lib.Dao;
-import mate.academy.shop.model.Product;
-import mate.academy.shop.model.ShoppingCard;
-import mate.academy.shop.db.Storage;
-import mate.academy.shop.model.User;
-
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.IntStream;
+import mate.academy.shop.dao.ShoppingCardDao;
+import mate.academy.shop.db.Storage;
+import mate.academy.shop.lib.Dao;
+import mate.academy.shop.model.ShoppingCard;
 
 @Dao
 public class ShoppingCardDaoImpl implements ShoppingCardDao {
     @Override
-    public ShoppingCard create(User user) {
-        ShoppingCard shoppingCard = new ShoppingCard();
-        shoppingCard.setUser(user);
-        Storage.addShoppingCard(shoppingCard);
-        return shoppingCard;
+    public ShoppingCard create(ShoppingCard obj) {
+        Storage.addShoppingCard(obj);
+        return obj;
     }
 
     @Override
-    public ShoppingCard get(Long id) {
+    public Optional<ShoppingCard> get(Long id) {
         return Storage.shoppingCards
                 .stream()
                 .filter(sh -> sh.getId().equals(id))
-                .findFirst()
-                .get();
+                .findFirst();
     }
 
     @Override
