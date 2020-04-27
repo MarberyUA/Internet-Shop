@@ -19,6 +19,9 @@ public class Storage {
     public static final List<User> users = new ArrayList<>();
 
     public static void addUser(User user) {
+        userId++;
+        user.setId(userId);
+        users.add(user);
     }
 
     public static void addProduct(Product product) {
@@ -29,10 +32,14 @@ public class Storage {
     }
 
     public static void addOrder(Order order) {
-
+        orderId++;
+        order.setId(orderId);
+        orders.add(order);
     }
 
     public static void addShoppingCard(ShoppingCard shoppingCard) {
-
+        shoppingCardId++;
+        shoppingCard.setId(shoppingCardId);
+        shoppingCards.add(shoppingCard);
     }
 }
