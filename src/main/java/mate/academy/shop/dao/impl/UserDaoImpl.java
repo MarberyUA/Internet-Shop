@@ -1,13 +1,12 @@
 package mate.academy.shop.dao.impl;
 
-import mate.academy.shop.dao.UserDao;
-import mate.academy.shop.lib.Dao;
-import mate.academy.shop.model.User;
-import mate.academy.shop.db.Storage;
-
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.IntStream;
+import mate.academy.shop.dao.UserDao;
+import mate.academy.shop.db.Storage;
+import mate.academy.shop.lib.Dao;
+import mate.academy.shop.model.User;
 
 @Dao
 public class UserDaoImpl implements UserDao {

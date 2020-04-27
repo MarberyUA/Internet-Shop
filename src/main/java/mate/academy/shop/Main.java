@@ -15,27 +15,25 @@ public class Main {
 
     public static void main(String[] args) {
         ProductService productService = (ProductService) injector.getInstance(ProductService.class);
-        OrderService orderService = (OrderService) injector.getInstance(OrderService.class);
-        UserService userService = (UserService) injector.getInstance(UserService.class);
-        ShoppingCardService shoppingCardService = (ShoppingCardService) injector.getInstance(ShoppingCardService.class);
 
-
-        Product iPhone = new Product("Iphone 11", 1000.0);
-        Product iPhonePro = new Product("Iphone 11Pro", 1500.0);
+        Product iphone = new Product("Iphone 11", 1000.0);
+        Product iphonePro = new Product("Iphone 11Pro", 1500.0);
         Product meat = new Product("meat", 100.0);
         Product milk = new Product("milk", 30.0);
         Product water = new Product("water", 50.0);
         Product cat = new Product("cat", 900.0);
-        productService.create(iPhone);
-        productService.create(iPhonePro);
+        productService.create(iphone);
+        productService.create(iphonePro);
         productService.create(meat);
         productService.create(milk);
         productService.create(water);
         productService.create(cat);
-
+        
+        char a = 'd';
+        System.out.printf(((byte) a) + "");
         System.out.println(productService.getAll());
 
-
+        UserService userService = (UserService) injector.getInstance(UserService.class);
         User user = new User();
         user.setName("Rostislav");
         User registeredUser = userService.create(user);
@@ -45,7 +43,10 @@ public class Main {
         registeredUser.setName("Rostislav Levadnyi");
         System.out.println(userService.update(registeredUser));
 
-        ShoppingCard shoppingCard = shoppingCardService.create(registeredUser);
+        ShoppingCardService shoppingCardService = (ShoppingCardService)
+                injector.getInstance(ShoppingCardService.class);
+        ShoppingCard shoppingCard = new ShoppingCard();
+        shoppingCard = shoppingCardService.create(shoppingCard, registeredUser);
         shoppingCardService.addProduct(shoppingCard, milk);
         System.out.println(shoppingCardService.getByUserId(registeredUser.getId()));
         shoppingCardService.addProduct(shoppingCard, cat);
@@ -54,14 +55,17 @@ public class Main {
         shoppingCardService.deleteProduct(shoppingCard, water);
         System.out.println(shoppingCardService.getByUserId(registeredUser.getId()));
 
-        Order order = orderService.completeOrder(shoppingCard.getProductsInShopping(), registeredUser);
+        OrderService orderService = (OrderService) injector.getInstance(OrderService.class);
+        Order order = orderService.completeOrder(shoppingCard.getProductsInShopping(),
+                registeredUser);
         System.out.println(orderService.getUserOrders(registeredUser));
         shoppingCardService.clear(shoppingCard);
 
-        shoppingCardService.addProduct(shoppingCard, iPhone);
-        shoppingCardService.addProduct(shoppingCard, iPhonePro);
+        shoppingCardService.addProduct(shoppingCard, iphone);
+        shoppingCardService.addProduct(shoppingCard, iphonePro);
 
-        Order newOrder = orderService.completeOrder(shoppingCard.getProductsInShopping(), registeredUser);
+        Order newOrder = orderService.completeOrder(shoppingCard.getProductsInShopping(),
+                registeredUser);
         System.out.println(orderService.getUserOrders(registeredUser));
     }
 }

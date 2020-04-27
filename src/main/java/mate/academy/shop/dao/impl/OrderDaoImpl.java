@@ -1,14 +1,14 @@
 package mate.academy.shop.dao.impl;
 
-import mate.academy.shop.dao.OrderDao;
-import mate.academy.shop.lib.Dao;
-import mate.academy.shop.model.Order;
-import mate.academy.shop.db.Storage;
-import mate.academy.shop.model.User;
-
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import mate.academy.shop.dao.OrderDao;
+import mate.academy.shop.db.Storage;
+import mate.academy.shop.lib.Dao;
+import mate.academy.shop.model.Order;
+import mate.academy.shop.model.User;
 
 @Dao
 public class OrderDaoImpl implements OrderDao {
@@ -24,6 +24,14 @@ public class OrderDaoImpl implements OrderDao {
                 .stream()
                 .filter(order -> order.getUser().getId().equals(id))
                 .findFirst();
+    }
+
+    @Override
+    public List<Order> getUserOrders(User user) {
+        return getAll()
+                .stream()
+                .filter(order -> order.getUser().getId().equals(user.getId()))
+                .collect(Collectors.toList());
     }
 
     @Override

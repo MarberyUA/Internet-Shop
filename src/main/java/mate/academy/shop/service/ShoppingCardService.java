@@ -1,13 +1,12 @@
 package mate.academy.shop.service;
 
+import java.util.List;
 import mate.academy.shop.model.Product;
 import mate.academy.shop.model.ShoppingCard;
 import mate.academy.shop.model.User;
 
-import java.util.List;
-
 public interface ShoppingCardService {
-    ShoppingCard create(User user);
+    ShoppingCard create(ShoppingCard shoppingCard, User user);
 
     ShoppingCard addProduct(ShoppingCard shoppingCart, Product product);
 
