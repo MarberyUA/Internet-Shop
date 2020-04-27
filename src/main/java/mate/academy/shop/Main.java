@@ -28,7 +28,9 @@ public class Main {
         productService.create(milk);
         productService.create(water);
         productService.create(cat);
-
+        
+        char a = 'd';
+        System.out.printf(((byte) a) + "");
         System.out.println(productService.getAll());
 
         UserService userService = (UserService) injector.getInstance(UserService.class);
