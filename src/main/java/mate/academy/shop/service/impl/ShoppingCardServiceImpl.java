@@ -39,11 +39,7 @@ public class ShoppingCardServiceImpl implements ShoppingCardService {
 
     @Override
     public ShoppingCard getByUserId(Long userId) {
-        return shoppingCardDao.getAll()
-                .stream()
-                .filter(sc -> sc.getUser().getId().equals(userId))
-                .findFirst()
-                .get();
+        return shoppingCardDao.getByUserId(userId);
     }
 
     @Override

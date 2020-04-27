@@ -25,6 +25,15 @@ public class ShoppingCardDaoImpl implements ShoppingCardDao {
     }
 
     @Override
+    public ShoppingCard getByUserId(Long userId) {
+        return getAll()
+                .stream()
+                .filter(sc -> sc.getUser().getId().equals(userId))
+                .findFirst()
+                .get();
+    }
+
+    @Override
     public List<ShoppingCard> getAll() {
         return Storage.shoppingCards;
     }
