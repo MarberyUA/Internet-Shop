@@ -4,6 +4,13 @@
     <title>Title</title>
 </head>
 <body>
-    <h1>Hello boyz!</h1>
+    <h1>Hello boyz! Current time is ${time}</h1>
+    <nav>
+        <a href="${pageContext.request.contextPath}/inject_data">Inject data</a>
+        <a href="${pageContext.request.contextPath}/users/all">All users</a>
+        <a href="${pageContext.request.contextPath}/registration">Register user</a>
+        <a href="${pageContext.request.contextPath}/products/all">All products</a>
+        <a href="${pageContext.request.contextPath}/products/add">Add product</a>
+    </nav>
 </body>
 </html>
