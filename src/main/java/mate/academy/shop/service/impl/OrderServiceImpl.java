@@ -1,7 +1,6 @@
 package mate.academy.shop.service.impl;
 
 import java.util.List;
-import java.util.stream.Collectors;
 import mate.academy.shop.dao.OrderDao;
 import mate.academy.shop.lib.Inject;
 import mate.academy.shop.lib.Service;
