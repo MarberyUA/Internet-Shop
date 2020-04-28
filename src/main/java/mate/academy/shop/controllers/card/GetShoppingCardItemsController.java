@@ -11,7 +11,7 @@ import mate.academy.shop.model.ShoppingCard;
 import mate.academy.shop.service.ShoppingCardService;
 
 @WebServlet("/shopping_card")
-public class ShoppingCardController extends HttpServlet {
+public class GetShoppingCardItemsController extends HttpServlet {
     private static final Long USER_ID = 1L;
 
     private static final Injector injector = Injector.getInstance("mate.academy");

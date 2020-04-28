@@ -13,7 +13,7 @@ import mate.academy.shop.service.ShoppingCardService;
 import mate.academy.shop.service.UserService;
 
 @WebServlet("/registration")
-public class RegistrationController extends HttpServlet {
+public class RegisterUserController extends HttpServlet {
     private static final Injector injector = Injector.getInstance("mate.academy.shop");
     private UserService userService = (UserService) injector.getInstance(UserService.class);
     private final ShoppingCardService shoppingCartService =

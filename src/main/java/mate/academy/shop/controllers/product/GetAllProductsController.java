@@ -12,7 +12,7 @@ import mate.academy.shop.model.Product;
 import mate.academy.shop.service.ProductService;
 
 @WebServlet("/products/all")
-public class ProductsController extends HttpServlet {
+public class GetAllProductsController extends HttpServlet {
     private static Injector injector = Injector.getInstance("mate.academy.shop");
     private ProductService productService = (ProductService)
             injector.getInstance(ProductService.class);

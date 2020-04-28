@@ -12,7 +12,7 @@ import mate.academy.shop.service.ProductService;
 import mate.academy.shop.service.ShoppingCardService;
 
 @WebServlet("/products/toCard")
-public class ProductAddToShoppingCardController extends HttpServlet {
+public class AddProductToShoppingCardController extends HttpServlet {
     private static final Long USER_ID = 1L;
 
     private static Injector injector = Injector.getInstance("mate.academy.shop");
