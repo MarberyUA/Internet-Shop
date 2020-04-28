@@ -12,15 +12,14 @@ import mate.academy.shop.model.User;
 import mate.academy.shop.service.UserService;
 
 @WebServlet("/users/all")
-public class GetUsersController extends HttpServlet {
-    private static final Injector injector = Injector.getInstance("mate.academy.shop");
-    private UserService userService = (UserService) injector.getInstance(UserService.class);
+public class GetAllUsersController extends HttpServlet {
+    private static final Injector INJECTOR = Injector.getInstance("mate.academy.shop");
+    private UserService userService = (UserService) INJECTOR.getInstance(UserService.class);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         List<User> allUsers = this.userService.getAll();
-
         req.setAttribute("allUsers", allUsers);
         req.getRequestDispatcher("/WEB_INF/views/users/all.jsp").forward(req, resp);
     }

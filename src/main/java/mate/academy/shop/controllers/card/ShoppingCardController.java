@@ -11,12 +11,11 @@ import mate.academy.shop.model.ShoppingCard;
 import mate.academy.shop.service.ShoppingCardService;
 
 @WebServlet("/shopping_card")
-public class GetShoppingCardItemsController extends HttpServlet {
+public class ShoppingCardController extends HttpServlet {
     private static final Long USER_ID = 1L;
-
-    private static final Injector injector = Injector.getInstance("mate.academy");
-    private final ShoppingCardService shoppingCartService =
-            (ShoppingCardService) injector.getInstance(ShoppingCardService.class);
+    private static final Injector INJECTOR = Injector.getInstance("mate.academy");
+    private ShoppingCardService shoppingCartService =
+            (ShoppingCardService) INJECTOR.getInstance(ShoppingCardService.class);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)

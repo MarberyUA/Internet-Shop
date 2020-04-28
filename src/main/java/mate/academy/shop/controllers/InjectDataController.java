@@ -16,13 +16,13 @@ import mate.academy.shop.service.UserService;
 
 @WebServlet("/inject_data")
 public class InjectDataController extends HttpServlet {
-    private static final Injector injector = Injector.getInstance("mate.academy.shop");
+    private static final Injector INJECTOR = Injector.getInstance("mate.academy.shop");
     private UserService userService = (UserService)
-            injector.getInstance(UserService.class);
+            INJECTOR.getInstance(UserService.class);
     private ProductService productService = (ProductService)
-            injector.getInstance(ProductService.class);
-    private final ShoppingCardService shoppingCartService =
-            (ShoppingCardService) injector.getInstance(ShoppingCardService.class);
+            INJECTOR.getInstance(ProductService.class);
+    private ShoppingCardService shoppingCartService =
+            (ShoppingCardService) INJECTOR.getInstance(ShoppingCardService.class);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
