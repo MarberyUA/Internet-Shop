@@ -2,11 +2,18 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Items you have added!</title>
+    <title>Card</title>
 </head>
 <body>
-<c:forEach var ="item" items="${cardItems}">
-    <p>Name: ${item.name}; price: ${item.price}</p>
+<c:forEach var ="item" items="${card.getProductsInShopping()}">
+    <p>Name: ${item.name}; price: ${item.price}
+        <a href="${pageContext.request.contextPath}/shopping_card/remove_item?itemId=${item.id}">
+            <button>remove form card</button>
+        </a>
+    </p>
 </c:forEach>
+<a href="${pageContext.request.contextPath}/make_order?userId=${card.getUser().getId()}">
+    <button>Make order</button>
+</a>
 </body>
 </html>

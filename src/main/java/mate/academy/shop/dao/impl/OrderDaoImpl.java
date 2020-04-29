@@ -22,13 +22,13 @@ public class OrderDaoImpl implements OrderDao {
     public Optional<Order> get(Long id) {
         return Storage.orders
                 .stream()
-                .filter(order -> order.getUser().getId().equals(id))
+                .filter(order -> order.getId().equals(id))
                 .findFirst();
     }
 
     @Override
     public List<Order> getUserOrders(User user) {
-        return getAll()
+        return Storage.orders
                 .stream()
                 .filter(order -> order.getUser().getId().equals(user.getId()))
                 .collect(Collectors.toList());
