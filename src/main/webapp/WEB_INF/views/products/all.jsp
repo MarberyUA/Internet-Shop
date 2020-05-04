@@ -7,7 +7,7 @@
 <body>
     <c:forEach var ="product" items="${products}">
         <p>Name: ${product.name}; price: ${product.price}
-            <a href="${pageContext.request.contextPath}/products/toCard?id=${product.id}">
+            <a href="${pageContext.request.contextPath}/shopping-card/product/add?id=${product.id}">
                 <button>add to card</button>
             </a>
         </p>
