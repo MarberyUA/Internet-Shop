@@ -26,6 +26,7 @@ public class AuthorizationFilter implements Filter {
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
         protectedUrls.put("/users/all", List.of(Role.RoleName.ADMIN));
+        protectedUrls.put("/user/delete", List.of(Role.RoleName.ADMIN));
         protectedUrls.put("/products", List.of(Role.RoleName.ADMIN));
         protectedUrls.put("/products/delete", List.of(Role.RoleName.ADMIN));
         protectedUrls.put("/products/add", List.of(Role.RoleName.ADMIN));
