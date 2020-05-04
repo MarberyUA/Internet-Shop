@@ -1,9 +1,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+    <jsp:include page="links.jsp"></jsp:include>
     <title>Registration</title>
 </head>
 <body>
+    <jsp:include page="nav_bar.jsp"></jsp:include>
     <h1 style="text-align: center;">Hello! Please provide your user details</h1>
     <h4 style="color: red; text-align: center">${message}</h4>
     <form method="post" action="${pageContext.request.contextPath}/registration" style="width: 100%;">
@@ -30,5 +32,6 @@
             </div>
         </div>
     </form>
+    <jsp:include page="scripts.jsp"></jsp:include>
 </body>
 </html>

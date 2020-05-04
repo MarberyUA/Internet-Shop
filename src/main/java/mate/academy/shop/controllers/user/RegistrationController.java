@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import mate.academy.shop.lib.Injector;
+import mate.academy.shop.model.Role;
 import mate.academy.shop.model.ShoppingCard;
 import mate.academy.shop.model.User;
 import mate.academy.shop.service.ShoppingCardService;
@@ -32,7 +33,6 @@ public class RegistrationController extends HttpServlet {
         String password = req.getParameter("password");
         String passwordRepeat = req.getParameter("password-repeat");
         if (password.equals(passwordRepeat)) {
-            // redirect to main page
             User newUser = new User();
             newUser.setName(login);
             newUser.setPassword(password);

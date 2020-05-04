@@ -2,9 +2,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+    <jsp:include page="../links.jsp"></jsp:include>
     <title>All users</title>
 </head>
 <body>
+    <jsp:include page="../nav_bar.jsp"></jsp:include>
     <h1>All users page</h1>
     <table border="1">
         <tr>
@@ -27,5 +29,6 @@
             </tr>
         </c:forEach>
     </table>
+    <jsp:include page="../scripts.jsp"></jsp:include>
 </body>
 </html>

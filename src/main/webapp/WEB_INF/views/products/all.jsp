@@ -2,9 +2,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+    <jsp:include page="../links.jsp"></jsp:include>
     <title>Title</title>
 </head>
 <body>
+    <jsp:include page="../nav_bar.jsp"></jsp:include>
     <c:forEach var ="product" items="${products}">
         <p>Name: ${product.name}; price: ${product.price}
             <a href="${pageContext.request.contextPath}/shopping-card/product/add?id=${product.id}">
@@ -12,5 +14,6 @@
             </a>
         </p>
     </c:forEach>
+    <jsp:include page="../scripts.jsp"></jsp:include>
 </body>
 </html>
