@@ -31,6 +31,7 @@ public class AuthenticationFilter implements Filter {
         String url = req.getServletPath();
         if (url.equals("/login") || url.equals("/registration")) {
             filterChain.doFilter(req, resp);
+            return;
         }
 
         Long userId = (Long) req.getSession().getAttribute(USER_ID);
@@ -38,7 +39,6 @@ public class AuthenticationFilter implements Filter {
             resp.sendRedirect("/login");
             return;
         }
-
         filterChain.doFilter(req, resp);
     }
 

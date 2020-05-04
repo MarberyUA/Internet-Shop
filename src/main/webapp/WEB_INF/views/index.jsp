@@ -13,7 +13,7 @@
         <a href="${pageContext.request.contextPath}/products/add">Add product</a>
         <a href="${pageContext.request.contextPath}/products">Admin product panel</a>
         <a href="${pageContext.request.contextPath}/shopping_card">Products in card</a>
-        <a href="${pageContext.request.contextPath}/orders_list">Orders</a>
+        <a href="${pageContext.request.contextPath}/order/all">Orders</a>
     </nav>
 </body>
 </html>

@@ -7,12 +7,12 @@
 <body>
 <c:forEach var ="item" items="${card.getProductsInShopping()}">
     <p>Name: ${item.name}; price: ${item.price}
-        <a href="${pageContext.request.contextPath}/shopping_card/remove_item?itemId=${item.id}">
+        <a href="${pageContext.request.contextPath}/shopping_card/product/remove?itemId=${item.id}">
             <button>remove form card</button>
         </a>
     </p>
 </c:forEach>
-<a href="${pageContext.request.contextPath}/make_order?userId=${card.getUser().getId()}">
+<a href="${pageContext.request.contextPath}/order/create?userId=${card.getUser().getId()}">
     <button>Make order</button>
 </a>
 </body>

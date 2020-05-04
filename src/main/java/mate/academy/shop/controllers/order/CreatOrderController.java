@@ -15,7 +15,7 @@ import mate.academy.shop.model.ShoppingCard;
 import mate.academy.shop.service.OrderService;
 import mate.academy.shop.service.ShoppingCardService;
 
-@WebServlet("/make_order")
+@WebServlet("/order/create")
 public class CreatOrderController extends HttpServlet {
     private static Injector injector = Injector.getInstance("mate.academy.shop");
     private ShoppingCardService shoppingCardService = (ShoppingCardService)
