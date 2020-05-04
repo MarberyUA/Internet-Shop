@@ -1,15 +1,15 @@
 package mate.academy.shop.web.filters;
 
-import java.util.Map;
-import java.util.List;
-import java.util.HashMap;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import javax.servlet.Filter;
+import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
-import javax.servlet.FilterChain;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import mate.academy.shop.lib.Injector;
@@ -18,9 +18,9 @@ import mate.academy.shop.model.User;
 import mate.academy.shop.service.UserService;
 
 public class AuthorizationFilter implements Filter {
-    private Map<String, List<Role.RoleName>> protectedUrls = new HashMap<>();
     private static final String USER_ID = "userId";
     private static final Injector INJECTOR = Injector.getInstance("mate.academy.shop");
+    private Map<String, List<Role.RoleName>> protectedUrls = new HashMap<>();
     private UserService userService = (UserService) INJECTOR.getInstance(UserService.class);
 
     @Override
