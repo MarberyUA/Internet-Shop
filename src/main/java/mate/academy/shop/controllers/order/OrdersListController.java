@@ -14,7 +14,6 @@ import mate.academy.shop.service.UserService;
 
 @WebServlet("/orders_list")
 public class OrdersListController extends HttpServlet {
-    private static final Long USER_ID = 1L;
     private static final Injector INJECTOR = Injector.getInstance("mate.academy");
     private OrderService orderService = (OrderService) INJECTOR.getInstance(OrderService.class);
     private UserService userService = (UserService) INJECTOR.getInstance(UserService.class);
@@ -22,7 +21,8 @@ public class OrdersListController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        List<Order> orders = orderService.getUserOrders(userService.get(USER_ID));
+        Long userId = Long.parseLong(req.getSession().getAttribute("userId").toString());
+        List<Order> orders = orderService.getUserOrders(userService.get(userId));
         if (orders.size() < 1) {
             String message = "You do not have complete orders";
             req.setAttribute("message", message);
