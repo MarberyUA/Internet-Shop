@@ -10,6 +10,13 @@ import mate.academy.shop.model.User;
 
 @Dao
 public class UserDaoImpl implements UserDao {
+    @Override
+    public Optional<User> getByLogin(String login) {
+        return Storage.users
+                .stream()
+                .filter(u -> u.getName().equals(login))
+                .findFirst();
+    }
 
     @Override
     public User create(User user) {
