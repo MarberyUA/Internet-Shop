@@ -2,9 +2,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+    <jsp:include page="../links.jsp"></jsp:include>
     <title>Title</title>
 </head>
 <body>
+    <jsp:include page="../nav_bar.jsp"></jsp:include>
     <h1>${message}</h1>
     <c:forEach var="order" items="${orders}">
         <div>
@@ -18,5 +20,6 @@
             </p>
         </div>
     </c:forEach>
+    <jsp:include page="../scripts.jsp"></jsp:include>
 </body>
 </html>

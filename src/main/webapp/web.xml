@@ -11,4 +11,17 @@
         <filter-name>authenticationFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
+
+    <filter>
+        <filter-name>authorizationFilter</filter-name>
+        <filter-class>mate.academy.shop.web.filters.AuthorizationFilter</filter-class>
+        <init-param>
+            <param-name>urls</param-name>
+            <param-value>/users/all:ADMIN;/user/delete:ADMIN;/products:ADMIN;/products/delete:ADMIN;/products/add:ADMIN</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>authorizationFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
 </web-app>

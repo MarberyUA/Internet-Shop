@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import mate.academy.shop.lib.Injector;
 import mate.academy.shop.model.Product;
+import mate.academy.shop.model.Role;
 import mate.academy.shop.model.ShoppingCard;
 import mate.academy.shop.model.User;
 import mate.academy.shop.service.ProductService;
@@ -27,15 +28,16 @@ public class InjectDataController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        User bob = new User();
-        bob.setName("Bob");
         User alisa = new User();
+        alisa.setPassword("123");
         alisa.setName("Alisa");
-        userService.create(bob);
         userService.create(alisa);
 
-        ShoppingCard bobShoppingCard = new ShoppingCard();
-        shoppingCartService.create(bobShoppingCard, bob);
+        User bob = new User();
+        bob.setName("Bob");
+        bob.setPassword("123");
+        bob.addRole(new Role(Role.RoleName.ADMIN));
+        userService.create(bob);
 
         ShoppingCard alisaShoppingCard = new ShoppingCard();
         shoppingCartService.create(alisaShoppingCard, alisa);
