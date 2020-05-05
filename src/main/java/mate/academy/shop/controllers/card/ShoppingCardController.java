@@ -1,6 +1,7 @@
 package mate.academy.shop.controllers.card;
 
 import java.io.IOException;
+import java.util.NoSuchElementException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -24,8 +25,10 @@ public class ShoppingCardController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         Long userId = Long.parseLong(req.getSession().getAttribute("userId").toString());
-        ShoppingCard shoppingCard = shoppingCartService.getByUserId(userId);
-        if (shoppingCard == null) {
+        ShoppingCard shoppingCard;
+        try {
+            shoppingCard = shoppingCartService.getByUserId(userId);
+        } catch (NoSuchElementException e) {
             shoppingCard = new ShoppingCard();
             User user = userService.get(userId);
             shoppingCartService.create(shoppingCard, user);

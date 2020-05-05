@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import mate.academy.shop.lib.Injector;
 import mate.academy.shop.model.Product;
+import mate.academy.shop.model.Role;
 import mate.academy.shop.model.ShoppingCard;
 import mate.academy.shop.model.User;
 import mate.academy.shop.service.ProductService;
@@ -31,6 +32,12 @@ public class InjectDataController extends HttpServlet {
         alisa.setPassword("123");
         alisa.setName("Alisa");
         userService.create(alisa);
+
+        User bob = new User();
+        bob.setName("Bob");
+        bob.setPassword("123");
+        bob.addRole(new Role(Role.RoleName.ADMIN));
+        userService.create(bob);
 
         ShoppingCard alisaShoppingCard = new ShoppingCard();
         shoppingCartService.create(alisaShoppingCard, alisa);

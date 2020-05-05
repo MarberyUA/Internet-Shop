@@ -1,6 +1,7 @@
 package mate.academy.shop.web.filters;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -25,12 +26,21 @@ public class AuthorizationFilter implements Filter {
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
-        protectedUrls.put("/users/all", List.of(Role.RoleName.ADMIN));
-        protectedUrls.put("/user/delete", List.of(Role.RoleName.ADMIN));
-        protectedUrls.put("/products", List.of(Role.RoleName.ADMIN));
-        protectedUrls.put("/products/delete", List.of(Role.RoleName.ADMIN));
-        protectedUrls.put("/products/add", List.of(Role.RoleName.ADMIN));
-        protectedUrls.put("/inject_data", List.of(Role.RoleName.ADMIN));
+        String urls = filterConfig.getInitParameter("urls");
+        String[] splitedUrls = urls.split(";");
+        for (int i = 0; i < splitedUrls.length; i++) {
+            String[] url = splitedUrls[i].split(":");
+            String[] roles = url[1].split(",");
+            List<Role.RoleName> listRoles = new ArrayList<>();
+            for (Role.RoleName role : Role.RoleName.values()) {
+                for (String strRole : roles) {
+                    if (strRole.equals(role.name())) {
+                        listRoles.add(role);
+                    }
+                }
+            }
+            protectedUrls.put(url[0], listRoles);
+        }
     }
 
     @Override
