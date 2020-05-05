@@ -1,24 +1,19 @@
 package mate.academy.shop.model;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 public class User {
     private String name;
     private Long id;
     private String password;
-    private List<Role> roles = new ArrayList<>();
-
-    public User() {
-        Role role = new Role(Role.RoleName.USER);
-        roles.add(role);
-    }
+    private Set<Role> roles = new HashSet<>();
 
     public void addRole(Role role) {
         roles.add(role);
     }
 
-    public List<Role> getRoles() {
+    public Set<Role> getRoles() {
         return roles;
     }
 

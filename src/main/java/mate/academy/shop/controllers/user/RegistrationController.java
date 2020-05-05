@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import mate.academy.shop.lib.Injector;
+import mate.academy.shop.model.Role;
 import mate.academy.shop.model.ShoppingCard;
 import mate.academy.shop.model.User;
 import mate.academy.shop.service.ShoppingCardService;
@@ -35,6 +36,7 @@ public class RegistrationController extends HttpServlet {
             User newUser = new User();
             newUser.setName(login);
             newUser.setPassword(password);
+            newUser.addRole(new Role(Role.RoleName.USER));
             userService.create(newUser);
             ShoppingCard shoppingCard = new ShoppingCard();
             shoppingCartService.create(shoppingCard, newUser);
