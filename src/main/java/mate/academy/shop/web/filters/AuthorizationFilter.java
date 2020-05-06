@@ -17,8 +17,10 @@ import mate.academy.shop.lib.Injector;
 import mate.academy.shop.model.Role;
 import mate.academy.shop.model.User;
 import mate.academy.shop.service.UserService;
+import org.apache.log4j.Logger;
 
 public class AuthorizationFilter implements Filter {
+    public static final Logger logger = Logger.getLogger(AuthorizationFilter.class);
     private static final String USER_ID = "userId";
     private static final Injector INJECTOR = Injector.getInstance("mate.academy.shop");
     private Map<String, List<Role.RoleName>> protectedUrls = new HashMap<>();
@@ -63,6 +65,8 @@ public class AuthorizationFilter implements Filter {
         if (isAuthorized(user, protectedUrls.get(url))) {
             filterChain.doFilter(req, resp);
         } else {
+            logger.info("Access denied for user: " + user.getName()
+                    + ". At the page: " + req.getServletPath());
             req.getRequestDispatcher("/WEB_INF/views/404error.jsp").forward(req, resp);
             return;
         }
