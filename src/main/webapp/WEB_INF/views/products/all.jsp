@@ -8,7 +8,7 @@
 <body>
     <jsp:include page="../nav_bar.jsp"></jsp:include>
     <c:forEach var ="product" items="${products}">
-        <p>Name: ${product.name}; price: ${product.price}
+        <p>Id: ${product.id}; Name: ${product.name}; price: ${product.price}
             <a href="${pageContext.request.contextPath}/shopping-card/product/add?id=${product.id}">
                 <button>add to card</button>
             </a>

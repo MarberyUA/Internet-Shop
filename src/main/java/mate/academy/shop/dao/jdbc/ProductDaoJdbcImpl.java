@@ -1,0 +1,101 @@
+package mate.academy.shop.dao.jdbc;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+import org.apache.log4j.Logger;
+import mate.academy.shop.dao.ProductDao;
+import mate.academy.shop.lib.Dao;
+import mate.academy.shop.model.Product;
+import mate.academy.shop.util.ConnectionUtil;
+import mate.academy.shop.web.filters.AuthorizationFilter;
+
+@Dao
+public class ProductDaoJdbcImpl implements ProductDao {
+    public static final Logger logger = Logger.getLogger(ProductDaoJdbcImpl.class);
+
+    @Override
+    public Product create(Product product) {
+        String query = "INSERT INTO products (product_name, price) VALUES (?, ?)";
+        try (Connection connection = ConnectionUtil.getConnection()) {
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setString(1, product.getName());
+            statement.setDouble(2, product.getPrice());
+            statement.execute();
+        } catch (SQLException e) {
+            logger.error("Error at the adding product to db!");
+            throw new RuntimeException("Can not create product", e);
+        }
+        return product;
+    }
+
+    @Override
+    public Optional<Product> get(Long id) {
+        String query = "SELECT * FROM products WHERE product_id = ?";
+        try (Connection connection = ConnectionUtil.getConnection()) {
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setLong(1, id);
+            ResultSet resultSet = statement.executeQuery();
+            Product product = new Product(resultSet.getString("product_name"),
+                    Double.parseDouble(resultSet.getString("price")));
+            product.setId(resultSet.getLong("product_id"));
+            return Optional.of(product);
+        } catch (SQLException e) {
+            logger.error("Error at the getting product from db!");
+            throw new RuntimeException("No such product in DB!", e);
+        }
+    }
+
+    @Override
+    public List<Product> getAll() {
+        List<Product> products = new ArrayList<>();
+        String query = "SELECT * FROM products";
+        try (Connection connection = ConnectionUtil.getConnection()) {
+            PreparedStatement statement = connection.prepareStatement(query);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                Product product = new Product(resultSet.getString("product_name"),
+                        Double.parseDouble(resultSet.getString("price")));
+                product.setId(resultSet.getLong("product_id"));
+                products.add(product);
+            }
+            return products;
+        } catch (SQLException e) {
+            logger.error("Error at the getting all products from db!");
+            throw new RuntimeException("No such product in DB!", e);
+        }
+    }
+
+    @Override
+    public Product update(Product obj) {
+        String query = "UPDATE products SET product_name = ?, price = ? WHERE product_id = ?";
+        try (Connection connection = ConnectionUtil.getConnection()) {
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setString(1, obj.getName());
+            statement.setDouble(2, obj.getPrice());
+            statement.setLong(3, obj.getId());
+            statement.execute();
+            return obj;
+        } catch (SQLException e) {
+            logger.error("Error at the updating product in db!");
+            throw new RuntimeException("No such product in DB!", e);
+        }
+    }
+
+    @Override
+    public boolean delete(Long id) {
+        String query = "DELETE FROM products WHERE product_id = ?";
+        try (Connection connection = ConnectionUtil.getConnection()) {
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setLong(1, id);
+            return statement.execute();
+        } catch (SQLException e) {
+            logger.error("Error at the deleting product from db!");
+            throw new RuntimeException("No such product in DB!", e);
+        }
+    }
+}
