@@ -89,7 +89,7 @@ public class ProductDaoJdbcImpl implements ProductDao {
 
     Product getProductDetails(ResultSet resultSet) throws SQLException {
         Product product = new Product(resultSet.getString("product_name"),
-                Double.parseDouble(resultSet.getString("price")));
+                resultSet.getDouble("price"));
         product.setId(resultSet.getLong("product_id"));
         return product;
     }
