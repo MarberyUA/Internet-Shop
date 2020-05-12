@@ -7,16 +7,13 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import org.apache.log4j.Logger;
 import mate.academy.shop.dao.ProductDao;
 import mate.academy.shop.lib.Dao;
 import mate.academy.shop.model.Product;
 import mate.academy.shop.util.ConnectionUtil;
-import mate.academy.shop.web.filters.AuthorizationFilter;
 
 @Dao
 public class ProductDaoJdbcImpl implements ProductDao {
-    public static final Logger logger = Logger.getLogger(ProductDaoJdbcImpl.class);
 
     @Override
     public Product create(Product product) {
@@ -27,7 +24,6 @@ public class ProductDaoJdbcImpl implements ProductDao {
             statement.setDouble(2, product.getPrice());
             statement.execute();
         } catch (SQLException e) {
-            logger.error("Error at the adding product to db!");
             throw new RuntimeException("Can not create product", e);
         }
         return product;
@@ -40,12 +36,9 @@ public class ProductDaoJdbcImpl implements ProductDao {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setLong(1, id);
             ResultSet resultSet = statement.executeQuery();
-            Product product = new Product(resultSet.getString("product_name"),
-                    Double.parseDouble(resultSet.getString("price")));
-            product.setId(resultSet.getLong("product_id"));
+            Product product = getProductDetails(resultSet);
             return Optional.of(product);
         } catch (SQLException e) {
-            logger.error("Error at the getting product from db!");
             throw new RuntimeException("No such product in DB!", e);
         }
     }
@@ -58,14 +51,11 @@ public class ProductDaoJdbcImpl implements ProductDao {
             PreparedStatement statement = connection.prepareStatement(query);
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
-                Product product = new Product(resultSet.getString("product_name"),
-                        Double.parseDouble(resultSet.getString("price")));
-                product.setId(resultSet.getLong("product_id"));
+                Product product = getProductDetails(resultSet);
                 products.add(product);
             }
             return products;
         } catch (SQLException e) {
-            logger.error("Error at the getting all products from db!");
             throw new RuntimeException("No such product in DB!", e);
         }
     }
@@ -81,7 +71,6 @@ public class ProductDaoJdbcImpl implements ProductDao {
             statement.execute();
             return obj;
         } catch (SQLException e) {
-            logger.error("Error at the updating product in db!");
             throw new RuntimeException("No such product in DB!", e);
         }
     }
@@ -94,8 +83,14 @@ public class ProductDaoJdbcImpl implements ProductDao {
             statement.setLong(1, id);
             return statement.execute();
         } catch (SQLException e) {
-            logger.error("Error at the deleting product from db!");
             throw new RuntimeException("No such product in DB!", e);
         }
+    }
+
+    Product getProductDetails(ResultSet resultSet) throws SQLException {
+        Product product = new Product(resultSet.getString("product_name"),
+                Double.parseDouble(resultSet.getString("price")));
+        product.setId(resultSet.getLong("product_id"));
+        return product;
     }
 }
