@@ -114,3 +114,10 @@ CREATE TABLE `internet_shop`.`orders_products` (
     REFERENCES `internet_shop`.`products` (`product_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
+     
+CREATE TABLE `products` (
+  `product_id` bigint NOT NULL AUTO_INCREMENT,
+  `product_name` varchar(225) NOT NULL,
+  `price` decimal(20,0) NOT NULL,
+  PRIMARY KEY (`product_id`),
+  UNIQUE KEY `name_UNIQUE` (`product_name`);
