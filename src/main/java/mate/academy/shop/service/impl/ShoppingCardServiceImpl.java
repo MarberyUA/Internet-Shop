@@ -16,25 +16,36 @@ public class ShoppingCardServiceImpl implements ShoppingCardService {
 
     @Override
     public ShoppingCard create(ShoppingCard shoppingCard,User user) {
-        shoppingCardDao.create(shoppingCard).setUser(user);
+        shoppingCard.setUser(user);
+        shoppingCardDao.create(shoppingCard);
         return shoppingCard;
     }
 
     @Override
     public ShoppingCard addProduct(ShoppingCard shoppingCart, Product product) {
-        shoppingCardDao.get(shoppingCart.getId()).get().addProductToCard(product);
+        shoppingCart.addProductToCard(product);
+        shoppingCart = shoppingCardDao.update(shoppingCart);
         return shoppingCart;
     }
 
     @Override
     public boolean deleteProduct(ShoppingCard shoppingCart, Product product) {
-        return shoppingCardDao.get(shoppingCart.getId()).get().getProductsInShopping()
-                .removeIf(pr -> pr.getId().equals(product.getId()));
+        boolean isDeleted = false;
+        for (int i = 0; i < shoppingCart.getProductsInShopping().size(); i++) {
+            if (shoppingCart.getProductsInShopping().get(i).getId().equals(product.getId())) {
+                shoppingCart.getProductsInShopping().remove(i);
+                isDeleted = true;
+                break;
+            }
+        }
+        shoppingCardDao.update(shoppingCart);
+        return isDeleted;
     }
 
     @Override
     public void clear(ShoppingCard shoppingCart) {
-        shoppingCardDao.get(shoppingCart.getId()).get().getProductsInShopping().clear();
+        shoppingCart.getProductsInShopping().clear();
+        shoppingCardDao.update(shoppingCart);
     }
 
     @Override

@@ -32,6 +32,10 @@ public class ShoppingCard {
         productsInShopping.add(product);
     }
 
+    public void addAllProducts(List<Product> products) {
+        productsInShopping.addAll(products);
+    }
+
     @Override
     public String toString() {
         return productsInShopping.toString();

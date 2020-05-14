@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import mate.academy.shop.lib.Injector;
+import mate.academy.shop.model.Product;
 import mate.academy.shop.model.ShoppingCard;
 import mate.academy.shop.service.ProductService;
 import mate.academy.shop.service.ShoppingCardService;
@@ -26,7 +27,8 @@ public class AddProductToShoppingCardController extends HttpServlet {
         Long id = Long.valueOf(req.getParameter("id"));
         Long userId = Long.valueOf(req.getSession().getAttribute("userId").toString());
         ShoppingCard shoppingCard = shoppingCardService.getByUserId(userId);
-        shoppingCard.addProductToCard(productService.get(Long.valueOf(id)));
+        Product product = productService.get(id);
+        shoppingCardService.addProduct(shoppingCard, product);
         resp.sendRedirect("/shopping_card");
     }
 }

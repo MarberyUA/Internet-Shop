@@ -34,7 +34,7 @@ public class CreatOrderController extends HttpServlet {
             Order order = orderService.completeOrder(products, shoppingCard.getUser());
             message = "You have make an order. Please, "
                     + "wait until our manager contact you to set details about order";
-            shoppingCard.getProductsInShopping().clear();
+            shoppingCardService.clear(shoppingCard);
         } else {
             message = "You do not have items in your card!";
         }
