@@ -19,6 +19,15 @@ public class ProductDaoJdbcImpl implements ProductDao {
     public Product create(Product product) {
         String query = "INSERT INTO products (product_name, price) VALUES (?, ?)";
         try (Connection connection = ConnectionUtil.getConnection()) {
+            String[] generatedColumns = {"product_id"};
+            PreparedStatement statement = connection.prepareStatement(query, generatedColumns);
+            statement.setString(1, product.getName());
+            statement.setDouble(2, product.getPrice());
+            statement.execute();
+            ResultSet resultSet = statement.getGeneratedKeys();
+            if (resultSet.next()) {
+                product.setId(resultSet.getLong(1));
+            }
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1, product.getName());
             statement.setDouble(2, product.getPrice());
@@ -36,8 +45,11 @@ public class ProductDaoJdbcImpl implements ProductDao {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setLong(1, id);
             ResultSet resultSet = statement.executeQuery();
-            Product product = getProductDetails(resultSet);
-            return Optional.of(product);
+            if (resultSet.next()) {
+                Product product = getProductDetails(resultSet);
+                return Optional.of(product);
+            }
+            return Optional.empty();
         } catch (SQLException e) {
             throw new RuntimeException("No such product in DB!", e);
         }

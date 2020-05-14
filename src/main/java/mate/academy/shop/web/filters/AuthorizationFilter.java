@@ -57,11 +57,16 @@ public class AuthorizationFilter implements Filter {
         }
 
         Long userId = (Long) req.getSession().getAttribute(USER_ID);
-        if (userService.get(userId) == null) {
+        if (userId == null || userService.get(userId) == null) {
             resp.sendRedirect("/login");
             return;
         }
         User user = userService.get(userId);
+        List<Role.RoleName> roles = userService.getUserRolesById(userId);
+        for (int i = 0; i < roles.size(); i++) {
+            user.addRole(new Role(roles.get(i)));
+        }
+
         if (isAuthorized(user, protectedUrls.get(url))) {
             filterChain.doFilter(req, resp);
         } else {

@@ -5,6 +5,7 @@ import java.util.Optional;
 import mate.academy.shop.dao.UserDao;
 import mate.academy.shop.lib.Inject;
 import mate.academy.shop.lib.Service;
+import mate.academy.shop.model.Role;
 import mate.academy.shop.model.User;
 import mate.academy.shop.service.UserService;
 
@@ -41,5 +42,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean delete(Long id) {
         return userDao.delete(id);
+    }
+
+    @Override
+    public List<Role.RoleName> getUserRolesById(Long id) {
+        return userDao.getUserRolesById(id);
     }
 }
