@@ -8,5 +8,5 @@ import mate.academy.shop.model.User;
 public interface UserDao extends GenericDao<User> {
     Optional<User> getByLogin(String login);
 
-    List<Role.RoleName> getRolesById(Long id);
+    List<Role.RoleName> getUserRolesById(Long userId);
 }

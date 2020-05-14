@@ -102,14 +102,13 @@ public class UserDaoJdbcImpl implements UserDao {
     }
 
     @Override
-    public List<Role.RoleName> getRolesById(Long id) {
-        String query = String.format(
-                "SELECT * FROM %s JOIN %s ON users.user_id = users_roles.user_id JOIN %s"
-                        + " ON users_roles.role_id = roles.role_id WHERE users.user_id = ?",
-                "users", "users_roles", "roles");
+    public List<Role.RoleName> getUserRolesById(Long userId) {
+        String query = "SELECT * FROM users JOIN users_roles "
+                + "ON users.user_id = users_roles.user_id JOIN roles "
+                + "ON users_roles.role_id = roles.role_id WHERE users.user_id = ?";
         try (Connection connection = ConnectionUtil.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(query);
-            statement.setLong(1, id);
+            statement.setLong(1, userId);
             ResultSet resultSet = statement.executeQuery();
             List<Role.RoleName> roles = new ArrayList<>();
             while (resultSet.next()) {

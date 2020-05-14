@@ -62,7 +62,7 @@ public class AuthorizationFilter implements Filter {
             return;
         }
         User user = userService.get(userId);
-        List<Role.RoleName> roles = userService.getRolesById(userId);
+        List<Role.RoleName> roles = userService.getUserRolesById(userId);
         for (int i = 0; i < roles.size(); i++) {
             user.addRole(new Role(roles.get(i)));
         }
