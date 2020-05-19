@@ -4,7 +4,7 @@ CREATE TABLE `internet_shop`.`users` (
   `user_id` BIGINT(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(225) NOT NULL,
   `password` varchar(225) NOT NULL,
-  `salt` varchar(225) NOT NULL,
+  `salt` varbinary(16) NOT NULL,
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `username_UNIQUE` (`username`);
 

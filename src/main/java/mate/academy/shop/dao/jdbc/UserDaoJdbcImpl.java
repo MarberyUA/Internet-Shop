@@ -41,7 +41,7 @@ public class UserDaoJdbcImpl implements UserDao {
             PreparedStatement statement = connection.prepareStatement(query, generatedColumns);
             statement.setString(1, obj.getName());
             statement.setString(2, obj.getPassword());
-            statement.setString(3, obj.getSalt());
+            statement.setBytes(3, obj.getSalt());
             statement.execute();
             ResultSet resultSet = statement.getGeneratedKeys();
             if (resultSet.next()) {
@@ -143,7 +143,7 @@ public class UserDaoJdbcImpl implements UserDao {
         user.setId(resultSet.getLong("user_id"));
         user.setName(resultSet.getString("username"));
         user.setPassword(resultSet.getString("password"));
-        user.setSalt(resultSet.getString("salt"));
+        user.setSalt(resultSet.getBytes("salt"));
         return user;
     }
 }
