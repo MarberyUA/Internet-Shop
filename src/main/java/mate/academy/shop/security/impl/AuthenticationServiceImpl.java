@@ -6,6 +6,7 @@ import mate.academy.shop.lib.Service;
 import mate.academy.shop.model.User;
 import mate.academy.shop.security.AuthenticationService;
 import mate.academy.shop.service.UserService;
+import mate.academy.shop.util.HashUtil;
 
 @Service
 public class AuthenticationServiceImpl implements AuthenticationService {
@@ -16,7 +17,8 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     public User login(String login, String password) throws AuthenticationException {
         User userFromDb = userService.getByLogin(login).orElseThrow(() ->
                 new AuthenticationException("Incorrect username or password"));
-        if (userFromDb.getPassword().equals(password)) {
+        if (userFromDb.getPassword().equals(HashUtil.hashPassword(password,
+                userFromDb.getSalt().getBytes()))) {
             return userFromDb;
         }
         throw new AuthenticationException("Incorrect username or password");

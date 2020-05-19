@@ -35,12 +35,13 @@ public class UserDaoJdbcImpl implements UserDao {
 
     @Override
     public User create(User obj) {
-        String query = "INSERT INTO users (username, password) VALUES (?, ?)";
+        String query = "INSERT INTO users (username, password, salt) VALUES (?, ?, ?)";
         try (Connection connection = ConnectionUtil.getConnection()) {
             String[] generatedColumns = {"user_id"};
             PreparedStatement statement = connection.prepareStatement(query, generatedColumns);
             statement.setString(1, obj.getName());
             statement.setString(2, obj.getPassword());
+            statement.setString(3, obj.getSalt());
             statement.execute();
             ResultSet resultSet = statement.getGeneratedKeys();
             if (resultSet.next()) {
@@ -142,6 +143,7 @@ public class UserDaoJdbcImpl implements UserDao {
         user.setId(resultSet.getLong("user_id"));
         user.setName(resultSet.getString("username"));
         user.setPassword(resultSet.getString("password"));
+        user.setSalt(resultSet.getString("salt"));
         return user;
     }
 }

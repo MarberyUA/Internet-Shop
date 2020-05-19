@@ -2,13 +2,11 @@ CREATE SCHEMA `internet_shop` DEFAULT CHARACTER SET utf8 ;
 
 CREATE TABLE `internet_shop`.`users` (
   `user_id` BIGINT(11) NOT NULL AUTO_INCREMENT,
-  `username` VARCHAR(225) NOT NULL,
-  `password` VARCHAR(225) NOT NULL,
+  `username` varchar(225) NOT NULL,
+  `password` varchar(225) NOT NULL,
+  `salt` varchar(225) NOT NULL,
   PRIMARY KEY (`user_id`),
-  UNIQUE INDEX `username_UNIQUE` (`username` ASC) VISIBLE);
-
-INSERT INTO `internet_shop`.`users` (username, password) VALUES
-    ('Bob', '123');
+  UNIQUE KEY `username_UNIQUE` (`username`);
 
 CREATE TABLE `products` (
   `product_id` BIGINT(11) NOT NULL AUTO_INCREMENT,
