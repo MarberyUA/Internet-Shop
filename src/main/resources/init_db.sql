@@ -7,7 +7,7 @@ CREATE TABLE `internet_shop`.`users` (
   `salt` varbinary(16) NOT NULL,
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `username_UNIQUE` (`username`);
-
+  
 CREATE TABLE `products` (
   `product_id` BIGINT(11) NOT NULL AUTO_INCREMENT,
   `product_name` varchar(225) NOT NULL,
