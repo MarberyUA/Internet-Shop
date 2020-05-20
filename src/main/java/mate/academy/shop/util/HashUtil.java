@@ -31,10 +31,4 @@ public class HashUtil {
         }
         return hashedPassword.toString();
     }
-
-    public static void main(String[] args) {
-        byte[] a = getSalt();
-        System.out.println(hashPassword("hello world", a).length());
-        System.out.println(hashPassword("hello world", a));
-    }
 }
