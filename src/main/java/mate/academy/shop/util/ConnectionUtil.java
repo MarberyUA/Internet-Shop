@@ -22,8 +22,8 @@ public class ConnectionUtil {
 
         try {
             return DriverManager.getConnection(url, dbProperties);
-        } catch (SQLException throwables) {
-            throw new RuntimeException("Can't establish the connection to DB", throwables);
+        } catch (SQLException throwable) {
+            throw new RuntimeException("Can't establish the connection to DB", throwable);
         }
     }
 }

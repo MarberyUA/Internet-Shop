@@ -1,7 +1,6 @@
 package mate.academy.shop.controllers.card;
 
 import java.io.IOException;
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -21,7 +20,7 @@ public class DeleteProductFromShoppingCardController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
-            throws ServletException, IOException {
+            throws IOException {
         Long itemId = Long.parseLong(req.getParameter("itemId"));
         Long userId = Long.parseLong(req.getSession().getAttribute("userId").toString());
         ShoppingCard shoppingCard = shoppingCartService.getByUserId(userId);

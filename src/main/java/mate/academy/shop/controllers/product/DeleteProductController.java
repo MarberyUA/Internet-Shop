@@ -1,7 +1,6 @@
 package mate.academy.shop.controllers.product;
 
 import java.io.IOException;
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -17,7 +16,7 @@ public class DeleteProductController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
-            throws ServletException, IOException {
+            throws IOException {
         Long productId = Long.parseLong(req.getParameter("id"));
         productService.delete(productId);
         resp.sendRedirect("/products");
