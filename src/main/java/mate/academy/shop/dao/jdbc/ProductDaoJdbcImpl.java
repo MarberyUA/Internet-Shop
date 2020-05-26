@@ -28,10 +28,6 @@ public class ProductDaoJdbcImpl implements ProductDao {
             if (resultSet.next()) {
                 product.setId(resultSet.getLong(1));
             }
-            PreparedStatement statement = connection.prepareStatement(query);
-            statement.setString(1, product.getName());
-            statement.setDouble(2, product.getPrice());
-            statement.execute();
         } catch (SQLException e) {
             throw new RuntimeException("Can not create product", e);
         }

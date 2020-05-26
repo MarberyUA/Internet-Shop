@@ -8,6 +8,7 @@ import mate.academy.shop.lib.Service;
 import mate.academy.shop.model.Role;
 import mate.academy.shop.model.User;
 import mate.academy.shop.service.UserService;
+import mate.academy.shop.util.HashUtil;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -21,6 +22,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User create(User user) {
+        byte[] salt = HashUtil.getSalt();
+        user.setSalt(salt);
+        user.setPassword(HashUtil.hashPassword(user.getPassword(), salt));
         return userDao.create(user);
     }
 
