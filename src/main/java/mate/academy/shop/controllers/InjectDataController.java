@@ -17,10 +17,6 @@ public class InjectDataController extends HttpServlet {
     private static final Injector INJECTOR = Injector.getInstance("mate.academy.shop");
     private final UserService userService = (UserService)
             INJECTOR.getInstance(UserService.class);
-    private final ProductService productService = (ProductService)
-            INJECTOR.getInstance(ProductService.class);
-    private final ShoppingCardService shoppingCartService =
-            (ShoppingCardService) INJECTOR.getInstance(ShoppingCardService.class);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)

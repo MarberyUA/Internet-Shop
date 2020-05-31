@@ -12,8 +12,6 @@ import mate.academy.shop.service.UserService;
 @WebServlet("/")
 public class IndexController extends HttpServlet {
     private static final Injector INJECTOR = Injector.getInstance("mate.academy.shop");
-    private final UserService userService = (UserService)
-            INJECTOR.getInstance(UserService.class);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
