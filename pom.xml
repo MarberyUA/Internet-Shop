@@ -15,6 +15,8 @@
         <maven.checkstyle.plugin.configLocation>
             https://raw.githubusercontent.com/mate-academy/style-guides/master/java/checkstyle.xml
         </maven.checkstyle.plugin.configLocation>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <mainClass>mate.academy.shop.Main</mainClass>
     </properties>
 
     <dependencies>
@@ -23,6 +25,11 @@
             <artifactId>junit</artifactId>
             <version>4.12</version>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.sonarsource.scanner.maven</groupId>
+            <artifactId>sonar-maven-plugin</artifactId>
+            <version>3.2</version>
         </dependency>
         <dependency>
             <groupId>javax.servlet</groupId>
@@ -50,7 +57,19 @@
             <version>8.0.17</version>
         </dependency>
     </dependencies>
-
+    <profiles>
+        <profile>
+            <id>sonar</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <sonar.host.url>
+                    http://localhost:9000
+                </sonar.host.url>
+            </properties>
+        </profile>
+    </profiles>
     <build>
         <plugins>
             <plugin>

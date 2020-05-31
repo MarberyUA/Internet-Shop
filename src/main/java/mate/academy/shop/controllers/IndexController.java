@@ -12,7 +12,7 @@ import mate.academy.shop.service.UserService;
 @WebServlet("/")
 public class IndexController extends HttpServlet {
     private static final Injector INJECTOR = Injector.getInstance("mate.academy.shop");
-    private UserService userService = (UserService)
+    private final UserService userService = (UserService)
             INJECTOR.getInstance(UserService.class);
 
     @Override

@@ -16,9 +16,9 @@ import mate.academy.shop.service.UserService;
 @WebServlet("/shopping_card")
 public class ShoppingCardController extends HttpServlet {
     private static final Injector INJECTOR = Injector.getInstance("mate.academy");
-    private ShoppingCardService shoppingCartService =
+    private final ShoppingCardService shoppingCartService =
             (ShoppingCardService) INJECTOR.getInstance(ShoppingCardService.class);
-    private UserService userService = (UserService)
+    private final UserService userService = (UserService)
             INJECTOR.getInstance(UserService.class);
 
     @Override

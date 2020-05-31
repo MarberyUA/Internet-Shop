@@ -15,9 +15,9 @@ import mate.academy.shop.service.ShoppingCardService;
 public class AddProductToShoppingCardController extends HttpServlet {
 
     private static Injector injector = Injector.getInstance("mate.academy.shop");
-    private ShoppingCardService shoppingCardService = (ShoppingCardService)
+    private final ShoppingCardService shoppingCardService = (ShoppingCardService)
             injector.getInstance(ShoppingCardService.class);
-    private ProductService productService = (ProductService)
+    private final ProductService productService = (ProductService)
             injector.getInstance(ProductService.class);
 
     @Override
