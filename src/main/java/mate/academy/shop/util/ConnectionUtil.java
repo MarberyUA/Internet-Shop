@@ -1,11 +1,10 @@
 package mate.academy.shop.util;
 
-import mate.academy.shop.exceptions.ConnectionException;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
+import mate.academy.shop.exceptions.ConnectionException;
 
 public class ConnectionUtil {
     static {

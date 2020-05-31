@@ -8,8 +8,6 @@ import javax.servlet.http.HttpServletResponse;
 import mate.academy.shop.lib.Injector;
 import mate.academy.shop.model.Role;
 import mate.academy.shop.model.User;
-import mate.academy.shop.service.ProductService;
-import mate.academy.shop.service.ShoppingCardService;
 import mate.academy.shop.service.UserService;
 
 @WebServlet("/inject_data")

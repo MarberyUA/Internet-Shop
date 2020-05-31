@@ -7,7 +7,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import mate.academy.shop.lib.Injector;
-import mate.academy.shop.service.UserService;
 
 @WebServlet("/")
 public class IndexController extends HttpServlet {
