@@ -3,12 +3,6 @@ jdk:
   - openjdk11
 script:
   - mvn clean install
-  - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=MarberyUA_Internet-Shop
 cache:
   directories:
     - $HOME/.m2
-addons:
-  sonarcloud:
-    organization: "marberyua"
-    token:
-      secure: "*********" # encrypted value of your token
