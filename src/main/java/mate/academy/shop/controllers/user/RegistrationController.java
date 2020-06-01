@@ -18,8 +18,8 @@ import org.apache.log4j.Logger;
 public class RegistrationController extends HttpServlet {
     public static final Logger logger = Logger.getLogger(RegistrationController.class);
     private static final Injector INJECTOR = Injector.getInstance("mate.academy.shop");
-    private UserService userService = (UserService) INJECTOR.getInstance(UserService.class);
-    private ShoppingCardService shoppingCartService =
+    private final UserService userService = (UserService) INJECTOR.getInstance(UserService.class);
+    private final ShoppingCardService shoppingCartService =
             (ShoppingCardService) INJECTOR.getInstance(ShoppingCardService.class);
 
     @Override

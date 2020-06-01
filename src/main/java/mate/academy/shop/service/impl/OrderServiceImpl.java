@@ -12,7 +12,7 @@ import mate.academy.shop.service.OrderService;
 @Service
 public class OrderServiceImpl implements OrderService {
     @Inject
-    OrderDao orderDao;
+    private OrderDao orderDao;
 
     @Override
     public Order create(Order obj) {

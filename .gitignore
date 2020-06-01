@@ -2,3 +2,4 @@
 target/
 logs/
 src/main/java/mate/academy/shop/controllers/TestDbController.java
+*.iml

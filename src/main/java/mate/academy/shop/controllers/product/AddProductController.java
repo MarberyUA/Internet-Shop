@@ -13,7 +13,7 @@ import mate.academy.shop.service.ProductService;
 @WebServlet("/products/add")
 public class AddProductController extends HttpServlet {
     private static Injector injector = Injector.getInstance("mate.academy.shop");
-    private ProductService productService = (ProductService)
+    private final ProductService productService = (ProductService)
             injector.getInstance(ProductService.class);
 
     @Override
@@ -25,7 +25,7 @@ public class AddProductController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
-            throws ServletException, IOException {
+            throws IOException {
         String name = req.getParameter("prd-name");
         String price = req.getParameter("prd-price");
         Product product = new Product(name, Double.valueOf(price));

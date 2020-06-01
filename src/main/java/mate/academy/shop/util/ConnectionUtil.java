@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
+import mate.academy.shop.exceptions.ConnectionException;
 
 public class ConnectionUtil {
     static {
@@ -22,8 +23,8 @@ public class ConnectionUtil {
 
         try {
             return DriverManager.getConnection(url, dbProperties);
-        } catch (SQLException throwables) {
-            throw new RuntimeException("Can't establish the connection to DB", throwables);
+        } catch (SQLException throwable) {
+            throw new ConnectionException("Can't establish the connection to DB", throwable);
         }
     }
 }

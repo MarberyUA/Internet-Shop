@@ -15,7 +15,8 @@ import mate.academy.shop.service.OrderService;
 @WebServlet("/order/info")
 public class OrderDetailController extends HttpServlet {
     private static final Injector INJECTOR = Injector.getInstance("mate.academy");
-    private OrderService orderService = (OrderService) INJECTOR.getInstance(OrderService.class);
+    private final OrderService orderService = (OrderService)
+            INJECTOR.getInstance(OrderService.class);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
