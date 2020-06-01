@@ -13,7 +13,7 @@ import mate.academy.shop.util.HashUtil;
 @Service
 public class UserServiceImpl implements UserService {
     @Inject
-    UserDao userDao;
+    private UserDao userDao;
 
     @Override
     public Optional<User> getByLogin(String login) {

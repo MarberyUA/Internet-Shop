@@ -12,7 +12,7 @@ import mate.academy.shop.service.ShoppingCardService;
 @Service
 public class ShoppingCardServiceImpl implements ShoppingCardService {
     @Inject
-    ShoppingCardDao shoppingCardDao;
+    private ShoppingCardDao shoppingCardDao;
 
     @Override
     public ShoppingCard create(ShoppingCard shoppingCard,User user) {

@@ -20,10 +20,10 @@ import mate.academy.shop.util.ConnectionUtil;
 @Dao
 public class OrderDaoJdbcImpl implements OrderDao {
     @Inject
-    UserDao userDao;
+    private UserDao userDao;
 
     @Inject
-    ProductDao productDao;
+    private ProductDao productDao;
 
     @Override
     public List<Order> getUserOrders(User user) {

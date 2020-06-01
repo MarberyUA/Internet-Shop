@@ -24,7 +24,7 @@ public class AuthorizationFilter implements Filter {
     private static final String USER_ID = "userId";
     private static final Injector INJECTOR = Injector.getInstance("mate.academy.shop");
     private Map<String, List<Role.RoleName>> protectedUrls = new HashMap<>();
-    private UserService userService = (UserService) INJECTOR.getInstance(UserService.class);
+    private final UserService userService = (UserService) INJECTOR.getInstance(UserService.class);
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
