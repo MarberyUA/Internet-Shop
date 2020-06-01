@@ -11,14 +11,14 @@ public class ConnectionUtil {
         try {
             Class.forName("com.mysql.jdbc.Driver");
         } catch (ClassNotFoundException e) {
-            throw new RuntimeException("Can't find MySQL Drivers", e);
+            throw new RuntimeException("Can't find MySQL Driver", e);
         }
     }
 
     public static Connection getConnection() {
         Properties dbProperties = new Properties();
-        dbProperties.put("user", "root"); // your db username
-        dbProperties.put("password", "marber1DEfact0"); // your db user`s password
+        dbProperties.put("user", ""); // your db username
+        dbProperties.put("password", ""); // your db user`s password
         String url = "jdbc:mysql://localhost:3306/internet_shop?serverTimezone=UTC";
 
         try {
