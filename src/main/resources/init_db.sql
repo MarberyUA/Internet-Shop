@@ -109,12 +109,6 @@ CREATE TABLE `internet_shop`.`orders_products` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
 
-    INSERT INTO `internet_shop`.`users` (username, password) VALUES
-    ('Bob', '123');
-
-    INSERT INTO `internet_shop`.`shopping_card` (user_id) VALUES
-        ((SELECT user_id from `internet_shop`.`users` where username = 'Bob'));
-
-    INSERT INTO `internet_shop`.`users_roles` (user_id, role_id) VALUES
+INSERT INTO `internet_shop`.`users_roles` (user_id, role_id) VALUES
     ((SELECT user_id from `internet_shop`.`users` WHERE username = 'Bob'),
     (SELECT role_id FROM `internet_shop`.`roles` where role_name = 'ADMIN'));

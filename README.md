@@ -52,25 +52,21 @@
 Integrate all scripts until you will see such script:
 
 
-    INSERT INTO `internet_shop`.`users` (username, password) VALUES
-        ('Bob', '123') 
-
-    Check out below, what do we need other scripts for.
+           INSERT INTO `internet_shop`.`users_roles` (user_id, role_id) VALUES
+           ((SELECT user_id from `internet_shop`.`users` WHERE username = 'Bob'),
+           (SELECT role_id FROM `internet_shop`.`roles` where role_name = 'ADMIN'));
 
 
 * And finally you can run the project via TomCat configuration but you may catch a problem with pages access at first project startup
 # How to set up authorization?
-Firstly you need to run the last scripts starting with: 
-
-    INSERT INTO `internet_shop`.`users` (username, password) VALUES
-        ('Bob', '123') 
-
-End ending with:
-
-    INSERT INTO `internet_shop`.`users_roles` (user_id, role_id) VALUES
+You just need to register user with name "Bob" and then run such script for your db:
+        
+        
+        INSERT INTO `internet_shop`.`users_roles` (user_id, role_id) VALUES
         ((SELECT user_id from `internet_shop`.`users` WHERE username = 'Bob'),
         (SELECT role_id FROM `internet_shop`.`roles` where role_name = 'ADMIN'));
+    
         
-We need this scripts to set access for pages (Also they need refinement because of security troubles).
+We need this script to set access for pages.
 
-Now when you did everything you can log in with Bob:123 and check out all pages.
+Now when you did everything you can log in with created user "Bob" and check out all pages.
