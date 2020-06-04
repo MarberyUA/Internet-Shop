@@ -4,7 +4,7 @@ CREATE TABLE `internet_shop`.`users` (
   `user_id` BIGINT(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(225) NOT NULL,
   `password` varchar(225) NOT NULL,
-  `salt` varbinary(16) NOT NULL,
+  `salt` varbinary(16),
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `username_UNIQUE` (`username`);
 
@@ -82,10 +82,6 @@ CREATE TABLE `internet_shop`.`users_roles` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
 
-INSERT INTO users_roles (user_id, role_id) VALUES
-    ((SELECT user_id from users WHERE username = 'Bob'),
-    (SELECT role_id FROM roles where role_name = 'ADMIN'));
-
 CREATE TABLE `internet_shop`.`orders` (
   `order_id` BIGINT(11) NOT NULL AUTO_INCREMENT,
   `user_id` BIGINT(11) NOT NULL,
@@ -112,3 +108,13 @@ CREATE TABLE `internet_shop`.`orders_products` (
     REFERENCES `internet_shop`.`products` (`product_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
+
+    INSERT INTO `internet_shop`.`users` (username, password) VALUES
+    ('Bob', '123');
+
+    INSERT INTO `internet_shop`.`shopping_card` (user_id) VALUES
+        ((SELECT user_id from `internet_shop`.`users` where username = 'Bob'));
+
+    INSERT INTO `internet_shop`.`users_roles` (user_id, role_id) VALUES
+    ((SELECT user_id from `internet_shop`.`users` WHERE username = 'Bob'),
+    (SELECT role_id FROM `internet_shop`.`roles` where role_name = 'ADMIN'));

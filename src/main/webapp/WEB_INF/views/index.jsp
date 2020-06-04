@@ -7,7 +7,6 @@
 <body>
     <jsp:include page="nav_bar.jsp"></jsp:include>
     <div>
-        <a href="${pageContext.request.contextPath}/inject_data">Inject data</a>
         <a href="${pageContext.request.contextPath}/users/all">All users</a>
         <a href="${pageContext.request.contextPath}/products/add">Add product</a>
         <a href="${pageContext.request.contextPath}/products">Admin product panel</a>
