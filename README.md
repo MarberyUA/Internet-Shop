@@ -21,6 +21,8 @@
 * Log4j
 * Maven
 * MySQL
+* ServletAPI
+* JSP&JSTL
 ---
 
 ### Project functionality:
